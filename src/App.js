@@ -1,10 +1,12 @@
 import logo from "./logo.svg";
 import "./css/App.css";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import { Ruta1, Ruta2, Formulario } from "./components/Components";
 
 const RutaA = () => (
     <div>
         <h1>RUTA /a</h1>
+        <Ruta1 />
     </div>
 );
 
@@ -18,35 +20,42 @@ function RutaB() {
 
 function App() {
     return (
-        <div>
-            <div>
-                <Link to="/a">A</Link>
-                <br />
-                <Link to="/b">B</Link>
-            </div>
-            <Route path="/a">
-                <RutaA />
+        <div className="App">
+            <header>
+                <ul>
+                    <li>
+                        <Link to={"/"}> Ir a Home </Link>
+                    </li>
+                    <li>
+                        <Link to={"/formulario"}> Ir a Formulario </Link>
+                    </li>
+                    <li>
+                        <Link to={"/ruta1"}>Ir a Ruta 1 </Link>
+                    </li>
+                    <li>
+                        <Link to={"/ruta2"}>Ir a Ruta 2 </Link>
+                    </li>
+                </ul>
+            </header>
+
+            <Route path={"/"} exact={true}>
+                <div style={{ border: "3px solid red" }}>
+                    <h2>Ruta de Home</h2>
+                </div>
             </Route>
-            <Route path="/b">
-                <RutaB />
+
+            <Route path={"/ruta1"}>
+                <Ruta1 logoPar={logo} message={"Hola este es un saludo"} />
+            </Route>
+
+            <Route path={"/ruta2"}>
+                <Ruta2 saludo={"Este es el saludo RUTA 2"} />
+            </Route>
+
+            <Route path={"/formulario"}>
+                <Formulario />
             </Route>
         </div>
-        // <div className="App">
-        //     <header className="App-header">
-        //         <img src={logo} className="App-logo" alt="logo" />
-        //         <p>
-        //             Edit <code>src/App.js</code> and save to reload.
-        //         </p>
-        //         <a
-        //             className="App-link"
-        //             href="https://reactjs.org"
-        //             target="_blank"
-        //             rel="noopener noreferrer"
-        //         >
-        //             Learn React
-        //         </a>
-        //     </header>
-        // </div>
     );
 }
 
